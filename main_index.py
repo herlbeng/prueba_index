@@ -31,7 +31,7 @@ def load_index_data():
     ON
         t1.category = t2.category_id
     WHERE
-        t1.status = 'ACTIVE' AND t1.is_latest = TRUE
+        1=1 --t1.status = 'ACTIVE' AND t1.is_latest = TRUE
     ORDER BY
         t1.created_date DESC
     """
