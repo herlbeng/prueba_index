@@ -11,11 +11,12 @@ RUN pip install -r requirements.txt
 # Copia tu aplicación Streamlit al contenedor
 COPY main_index.py .
 
-# Exponer el puerto por defecto de Streamlit (8501)
-EXPOSE 8501
+# Exponer el puerto que usará Cloud Run
+EXPOSE 8080
 
-# Definir la variable de entorno que necesita Streamlit
-ENV STREAMLIT_SERVER_PORT=8501
+# Configuración por defecto para ejecución local y Cloud Run
+ENV PORT=8080
+ENV STREAMLIT_SERVER_HEADLESS=true
 
 # Comando para correr la aplicación Streamlit cuando se inicie el contenedor
-CMD ["streamlit", "run", "main_index.py", "--server.port", "8501", "--server.enableCORS", "false", "--server.enableXsrfProtection", "false"]
+CMD ["sh", "-c", "streamlit run main_index.py --server.address 0.0.0.0 --server.port ${PORT:-8080} --server.enableCORS false --server.enableXsrfProtection false"]

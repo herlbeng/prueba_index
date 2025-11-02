@@ -56,5 +56,4 @@ if gcloud run services describe "$SERVICE_NAME" "${RUN_FLAGS[@]}" >/dev/null 2>&
   gcloud run services update "$SERVICE_NAME" --image "$IMAGE_TAG" "${RUN_FLAGS[@]}" "${SERVICE_FLAGS[@]}"
 else
   gcloud run deploy "$SERVICE_NAME" --image "$IMAGE_TAG" --platform managed --allow-unauthenticated "${RUN_FLAGS[@]}" "${SERVICE_FLAGS[@]}"
-fi
-
+fi   
